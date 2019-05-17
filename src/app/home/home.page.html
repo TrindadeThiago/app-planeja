@@ -11,5 +11,23 @@
     <h4>Bem-Vindo ao Novo Planejamento</h4>
     <p>Aqui você poderá fazer todo o seu controle financeiro</p>
   </div>
-  <ion-button expand='block' color='success' [routerLink]='["/novo-planejamento"]'>Novo Planejamento</ion-button>
+  <div *ngIf="planejamentos.length > 0">
+    <h2>Seus Planejamentos</h2>
+    <div *ngFor="let planejamento of planejamentos">
+      <ion-card>
+        <ion-card-content>
+          <h3> {{planejamento.nome}} </h3>
+          <p> {{planejamento.faturamento}} </p>
+          <p> {{planejamento.custo}} </p>
+          <p style="text-align: right">
+            <ion-button color='danger' size='small' (click)="excluir(planejamento.nome)"><ion-icon name='trash' ></ion-icon></ion-button>
+          </p>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+  <div *ngIf="planejamentos.length === 0">
+    <p>Ainda não há planejamentos cadastrados</p>
+    <ion-button expand='block' color='success' [routerLink]='["/novo-planejamento"]'>Novo Planejamento</ion-button>
+  </div>
 </ion-content>

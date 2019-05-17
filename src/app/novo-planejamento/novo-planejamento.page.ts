@@ -14,9 +14,14 @@ export class NovoPlanejamentoPage implements OnInit {
   }
 
   salvar(form) {
+
+    const planejamentoString = JSON.stringify(form.value)
+
     const nomePlaneja = form.value.nome;
     const faturaPlaneja = form.value.faturamento;
     const custoPlaneja = form.value.custo;
+
+    localStorage.setItem(nomePlaneja, planejamentoString)
 
     console.log(nomePlaneja, faturaPlaneja, custoPlaneja)
 
